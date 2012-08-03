@@ -22,7 +22,18 @@ Usage Example
 
 This is a simple HTTP server which creates the recaptcha form and tests the input.
 
-Set the recaptcha_public_key constant to your actual public key, and after building, run ./example from a prompt. 
+Set the recaptcha_public_key constant to your actual public key, and builD, using the go tool to install the go-recpatcha package in your packages tree:
+
+```
+go get github.com/dpapathanasiou/go-recaptcha
+go build example.go
+```
+
+Run the server by invoking the executable:
+
+```
+./example
+```
 
 You can access the page from http://localhost:9001/ in your browser.
 
