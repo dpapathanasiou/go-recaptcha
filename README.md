@@ -22,7 +22,7 @@ Usage Example
 
 This is a simple HTTP server which creates the recaptcha form and tests the input.
 
-Set the recaptcha_public_key constant to your actual public key, and builD, using the go tool to install the go-recpatcha package in your packages tree:
+Set the recaptcha_public_key constant to your actual public key, and builD, using the go tool to install the go-recaptcha package in your packages tree:
 
 ```
 go get github.com/dpapathanasiou/go-recaptcha
