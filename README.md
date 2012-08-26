@@ -9,7 +9,7 @@ This package handles reCaptcha (http://www.google.com/recaptcha) form submission
 Usage
 -----
 
-Import "github.com/dpapathanasiou/go-recaptcha" in your web server, set the recaptcha_private_key variable to the one provided for your domain, and call:
+Install this package in your environment, set the recaptcha_private_key variable to the one provided for your domain, and call:
 
     recaptcha.Confirm (client_ip_address, recaptcha_challenge_field, recaptcha_response_field)
 
@@ -22,7 +22,7 @@ Usage Example
 
 This is a simple HTTP server which creates the recaptcha form and tests the input.
 
-Set the recaptcha_public_key constant to your actual public key, and builD, using the go tool to install the go-recaptcha package in your packages tree:
+Set the recaptcha_public_key constant to your actual public key, and build, using the go tool to install the go-recaptcha package in your packages tree:
 
 ```
 go get github.com/dpapathanasiou/go-recaptcha
@@ -44,7 +44,7 @@ import (
     "fmt"
     "log"
     "net/http"
-    "github.com/dpapathanasiou/go-recaptcha"
+    "recaptcha" // assumes it has already been installed: 'go get github.com/dpapathanasiou/go-recaptcha'
 )
 
 const (
