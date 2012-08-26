@@ -38,6 +38,12 @@ Run the server by invoking the executable:
 You can access the page from http://localhost:9001/ in your browser.
 
 ```go
+// example.go
+//
+// A simple HTTP server which presents a reCaptcha input form and evaulates the result,
+// using the github.com/dpapathanasiou/go-recaptcha package
+//
+// Edit the recaptcha_public_key constant before using
 package main
 
 import (
