@@ -12,7 +12,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
-	"recaptcha"
+	"github.com/dpapathanasiou/go-recaptcha"
 )
 
 var recaptcha_public_key string
@@ -76,8 +76,8 @@ func homePage(writer http.ResponseWriter, request *http.Request) {
 // It launches a simple web server on port 9001 which produces the reCaptcha input form and checks the client
 // input if the form is posted.
 func main() {
-	if len(os.Args) != 2 {
-		fmt.Println("usage: %s <reCaptcha public key> <reCaptcha private key>", filepath.Base(os.Args[0]))
+	if len(os.Args) != 3 {
+		fmt.Printf("usage: %s <reCaptcha public key> <reCaptcha private key>\n", filepath.Base(os.Args[0]))
 		os.Exit(1)
 	} else {
 		recaptcha_public_key = os.Args[1]

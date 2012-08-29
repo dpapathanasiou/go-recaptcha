@@ -9,22 +9,27 @@ This package handles reCaptcha (http://www.google.com/recaptcha) form submission
 Usage
 -----
 
-Clone this repo, add its path to your $GOPATH environment variable, and edit the recaptcha_private_key constant in line 19 of the src/recaptcha/recaptcha.go file to the one provided for your domain.
+Install Clone this repo, add its path to your $GOPATH environment variable, and edit the recaptcha_private_key constant in line 19 of the src/recaptcha/recaptcha.go file to the one provided for your domain.
 
-Next, install the package in your environment:
+Install the package in your environment:
 
 ```
-cd ~/[where you cloned the repo]/go-recaptcha
-export GOPATH=$GOPATH:`pwd`
-cd $GOPATH/src/recaptcha
-go install
+go get github.com/dpapathanasiou/go-recaptcha
 ```
 
-To use it within your own code, import "recaptcha" and call:
+To use it within your own code, import "github.com/dpapathanasiou/go-recaptcha" and call:
 
-    recaptcha.Confirm (client_ip_address, recaptcha_challenge_field, recaptcha_response_field)
+```
+recaptcha.Init (recaptcha_private_key)
+```
 
-with the values obtained by reading the form's POST parameters.
+once, to set the reCaptcha private key for your domain, then:
+
+```
+recaptcha.Confirm (client_ip_address, recaptcha_challenge_field, recaptcha_response_field)
+```
+
+for each reCpatcha form input you need to check, using the values obtained by reading the form's POST parameters.
 
 The recaptcha.Confirm() function returns either true (i.e., the captcha was completed correctly) or false.
 
@@ -33,7 +38,7 @@ Usage Example
 
 Included with this repo is example.go, a simple HTTP server which creates the reCaptcha form and tests the input.
 
-Set the recaptcha_public_key constant in line 17 to your actual public key, and build:
+Build the example after installing the recaptcha package:
 
 ```
 go build example.go
@@ -42,7 +47,7 @@ go build example.go
 Run the server by invoking the executable:
 
 ```
-./example
+./example <reCaptcha public key> <reCaptcha private key>
 ```
 
 You can access the page from http://localhost:9001/ in your browser.
