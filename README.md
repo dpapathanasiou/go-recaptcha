@@ -29,7 +29,7 @@ once, to set the reCaptcha private key for your domain, then:
 recaptcha.Confirm (client_ip_address, recaptcha_challenge_field, recaptcha_response_field)
 ```
 
-for each reCpatcha form input you need to check, using the values obtained by reading the form's POST parameters.
+for each reCaptcha form input you need to check, using the values obtained by reading the form's POST parameters.
 
 The recaptcha.Confirm() function returns either true (i.e., the captcha was completed correctly) or false.
 

@@ -1,9 +1,9 @@
 // example.go
 //
 // A simple HTTP server which presents a reCaptcha input form and evaulates the result,
-// using the github.com/dpapathanasiou/go-recaptcha package
+// using the github.com/dpapathanasiou/go-recaptcha package.
 //
-// Edit the recaptcha_public_key constant before using
+// See the main() function for usage.
 package main
 
 import (
