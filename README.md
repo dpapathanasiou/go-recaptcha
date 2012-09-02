@@ -9,8 +9,6 @@ This package handles reCaptcha (http://www.google.com/recaptcha) form submission
 Usage
 -----
 
-Install Clone this repo, add its path to your $GOPATH environment variable, and edit the recaptcha_private_key constant in line 19 of the src/recaptcha/recaptcha.go file to the one provided for your domain.
-
 Install the package in your environment:
 
 ```
