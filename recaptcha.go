@@ -14,9 +14,9 @@ import (
 	"strings"
 )
 
-const recaptcha_server_name = "http://www.google.com/recaptcha/api/verify"
+const recaptchaServerName = "http://www.google.com/recaptcha/api/verify"
 
-var recaptcha_private_key string
+var recaptchaPrivateKey string
 
 // check uses the client ip address, the challenge code from the reCaptcha form,
 // and the client's response input to that challenge to determine whether or not
@@ -24,15 +24,15 @@ var recaptcha_private_key string
 // It returns a boolean value indicating whether or not the client answered correctly.
 func check(remoteip, challenge, response string) (s string) {
 	s = ""
-	resp, err := http.PostForm(recaptcha_server_name,
-		url.Values{"privatekey": {recaptcha_private_key}, "remoteip": {remoteip}, "challenge": {challenge}, "response": {response}})
+	resp, err := http.PostForm(recaptchaServerName,
+		url.Values{"privatekey": {recaptchaPrivateKey}, "remoteip": {remoteip}, "challenge": {challenge}, "response": {response}})
 	if err != nil {
-		log.Println("Post error: %s", err)
+		log.Printf("Post error: %s\n", err)
 	}
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		log.Println("Read error: could not read body: %s", err)
+		log.Printf("Read error: could not read body: %s\n", err)
 	} else {
 		s = string(body)
 	}
@@ -52,5 +52,5 @@ func Confirm(remoteip, challenge, response string) (result bool) {
 // Init allows the webserver or code evaluating the reCaptcha form input to set the
 // reCaptcha private key (string) value, which will be different for every domain.
 func Init(key string) {
-	recaptcha_private_key = key
+	recaptchaPrivateKey = key
 }
