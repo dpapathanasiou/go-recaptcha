@@ -7,12 +7,20 @@
 package recaptcha
 
 import (
+	"encoding/json"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"net/url"
-	"strings"
+	"time"
 )
+
+type RecaptchaResponse struct {
+	Success bool `json:"success"`
+	ChallengeTS time.Time `json:"challenge_ts"`
+	Hostname string `json:"hostname"`
+	ErrorCodes []int `json:"error-codes"`
+}
 
 const recaptcha_server_name = "https://www.google.com/recaptcha/api/siteverify"
 
@@ -22,8 +30,7 @@ var recaptcha_private_key string
 // and the client's response input to that challenge to determine whether or not
 // the client answered the reCaptcha input question correctly.
 // It returns a boolean value indicating whether or not the client answered correctly.
-func check(remoteip, response string) (s string) {
-	s = ""
+func check(remoteip, response string) (r RecaptchaResponse) {
 	resp, err := http.PostForm(recaptcha_server_name,
 		url.Values{"secret": {recaptcha_private_key}, "remoteip": {remoteip}, "response": {response}})
 	if err != nil {
@@ -33,8 +40,10 @@ func check(remoteip, response string) (s string) {
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		log.Println("Read error: could not read body: %s", err)
-	} else {
-		s = string(body)
+	}
+	err = json.Unmarshal(body, &r)
+	if err != nil {
+		log.Println("Read error: got invalid JSON: %s", err)
 	}
 	return
 }
@@ -45,7 +54,7 @@ func check(remoteip, response string) (s string) {
 // the client answered the reCaptcha input question correctly.
 // It returns a boolean value indicating whether or not the client answered correctly.
 func Confirm(remoteip, response string) (result bool) {
-	result = strings.HasPrefix(check(remoteip, response), "true")
+	result = check(remoteip, response).Success
 	return
 }
 
