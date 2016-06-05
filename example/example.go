@@ -8,17 +8,17 @@ package main
 
 import (
 	"fmt"
+	"github.com/dpapathanasiou/go-recaptcha"
 	"log"
 	"net/http"
 	"os"
 	"path/filepath"
-	"github.com/dpapathanasiou/go-recaptcha"
 )
 
 var recaptchaPublicKey string
 
 const (
-	pageTop               = `<!DOCTYPE HTML><html><head>
+	pageTop = `<!DOCTYPE HTML><html><head>
 <style>.error{color:#ff0000;} .ack{color:#0000ff;}</style><title>Recaptcha Test</title></head>
 <body><div style="width:100%"><div style="width: 50%;margin: 0 auto;">
 <h3>Recaptcha Test</h3>
