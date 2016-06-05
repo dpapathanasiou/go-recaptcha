@@ -1,6 +1,6 @@
 ## Using this Example
 
-[This](example/example.go) is a simple HTTP server which creates the reCaptcha form and tests the input.
+[This](example.go) is a simple HTTP server which creates the reCaptcha form and tests the input.
 
 Build the example after installing the recaptcha package:
 
