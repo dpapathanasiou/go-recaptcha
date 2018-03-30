@@ -30,20 +30,23 @@ var recaptchaPrivateKey string
 // and the client's response input to that challenge to determine whether or not
 // the client answered the reCaptcha input question correctly.
 // It returns a boolean value indicating whether or not the client answered correctly.
-func check(remoteip, response string) (r RecaptchaResponse) {
+func check(remoteip, response string) (r RecaptchaResponse, err error) {
 	resp, err := http.PostForm(recaptchaServerName,
 		url.Values{"secret": {recaptchaPrivateKey}, "remoteip": {remoteip}, "response": {response}})
 	if err != nil {
 		log.Printf("Post error: %s\n", err)
+		return
 	}
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		log.Printf("Read error: could not read body: %s\n", err)
+		log.Println("Read error: could not read body: %s", err)
+		return
 	}
 	err = json.Unmarshal(body, &r)
 	if err != nil {
-		log.Printf("Read error: got invalid JSON: %s\n", err)
+		log.Println("Read error: got invalid JSON: %s", err)
+		return
 	}
 	return
 }
@@ -53,8 +56,9 @@ func check(remoteip, response string) (r RecaptchaResponse) {
 // and the client's response input to that challenge to determine whether or not
 // the client answered the reCaptcha input question correctly.
 // It returns a boolean value indicating whether or not the client answered correctly.
-func Confirm(remoteip, response string) (result bool) {
-	result = check(remoteip, response).Success
+func Confirm(remoteip, response string) (result bool, err error) {
+	resp,err := check(remoteip, response)
+	result = resp.Success
 	return
 }
 

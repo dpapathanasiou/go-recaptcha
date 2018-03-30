@@ -37,12 +37,15 @@ const (
 // were input and sent by HTTP POST to the server, then calls the recaptcha package's Confirm()
 // method, which returns a boolean indicating whether or not the client answered the form correctly.
 func processRequest(request *http.Request) (result bool) {
-	result = false
 	recaptchaResponse, responseFound := request.Form["g-recaptcha-response"]
 	if responseFound {
-		result = recaptcha.Confirm("127.0.0.1", recaptchaResponse[0])
+		result, err := recaptcha.Confirm("127.0.0.1", recaptchaResponse[0])
+		if err != nil {
+			log.Println("recaptcha server error", err)
+		}
+		return result
 	}
-	return
+	return false
 }
 
 // homePage is a simple HTTP handler which produces a basic HTML page
