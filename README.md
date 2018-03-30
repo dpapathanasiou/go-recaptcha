@@ -15,7 +15,7 @@ Install the package in your environment:
 go get github.com/dpapathanasiou/go-recaptcha
 ```
 
-To use it within your own code, import "<tt>github.com/dpapathanasiou/go-recaptcha</tt>" and call:
+To use it within your own code, import <tt>github.com/dpapathanasiou/go-recaptcha</tt> and call:
 
 ```
 recaptcha.Init (recaptchaPrivateKey)
@@ -29,7 +29,7 @@ recaptcha.Confirm (clientIpAddress, recaptchaResponse)
 
 for each reCaptcha form input you need to check, using the values obtained by reading the form's POST parameters (the "<tt>recaptchaResponse</tt>" in the above corresponds to the value of "<tt>g-recaptcha-response</tt>" sent by the reCaptcha server.)
 
-The recaptcha.Confirm() function returns either true (i.e., the captcha was completed correctly) or false.
+The recaptcha.Confirm() function returns either true (i.e., the captcha was completed correctly) or false, along with any errors (from the HTTP io read or the attempt to unmarshal the JSON reply).
 
 Usage Example
 -------------

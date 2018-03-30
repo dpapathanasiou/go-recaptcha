@@ -9,12 +9,14 @@ go get github.com/dpapathanasiou/go-recaptcha
 go build example.go
 ```
 
-Run the server by invoking the executable:
+Run the server<sup>&#42;</sup> by invoking the executable:
 
 ```
-./example <reCaptcha public key> <reCaptcha private key>
+./example <reCaptcha public key (aka Site key)> <reCaptcha private key (aka Secret key)>
 ```
 
 You can access the page from http://localhost:9001/ in your browser.
 
 For more information on client side setup and other configuration options, check the [official documentation](https://developers.google.com/recaptcha/intro).
+
+ <sup>&#42;</sup> make sure ['localhost' is added to the list of domains allowed](https://developers.google.com/recaptcha/docs/domain_validation) for the site registered at reCaptcha.
