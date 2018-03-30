@@ -57,7 +57,7 @@ func check(remoteip, response string) (r RecaptchaResponse, err error) {
 // the client answered the reCaptcha input question correctly.
 // It returns a boolean value indicating whether or not the client answered correctly.
 func Confirm(remoteip, response string) (result bool, err error) {
-	resp,err := check(remoteip, response)
+	resp, err := check(remoteip, response)
 	result = resp.Success
 	return
 }
