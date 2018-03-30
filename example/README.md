@@ -6,6 +6,7 @@ Build the example after installing the recaptcha package:
 
 ```
 go get github.com/dpapathanasiou/go-recaptcha
+cd $GOPATH/src/github.com/dpapathanasiou/go-recaptcha/example
 go build example.go
 ```
 

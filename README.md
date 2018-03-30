@@ -37,3 +37,11 @@ Usage Example
 Included with this repo is [example.go](example/example.go), a simple HTTP server which creates the reCaptcha form and tests the input.
 
 See the [instructions](example/README.md) for running the example for more details.
+
+## Donate
+
+If you find this work useful, please consider making a donation:
+
+<a href="bitcoin:14TM4ADKJbaGEi8Qr8dh4KfPBQmjTshkZ2">Bitcoin Donate</a> `14TM4ADKJbaGEi8Qr8dh4KfPBQmjTshkZ2`
+
+![QR code](https://bitref.com/qr.php?data=14TM4ADKJbaGEi8Qr8dh4KfPBQmjTshkZ2)
