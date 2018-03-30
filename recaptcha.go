@@ -19,7 +19,7 @@ type RecaptchaResponse struct {
 	Success     bool      `json:"success"`
 	ChallengeTS time.Time `json:"challenge_ts"`
 	Hostname    string    `json:"hostname"`
-	ErrorCodes  []int     `json:"error-codes"`
+	ErrorCodes  []string  `json:"error-codes"`
 }
 
 const recaptchaServerName = "https://www.google.com/recaptcha/api/siteverify"
