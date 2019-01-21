@@ -1,7 +1,7 @@
 go-recaptcha
 ============
 
-## https://godoc.org/github.com/dpapathanasiou/go-recaptcha
+https://godoc.org/github.com/dpapathanasiou/go-recaptcha
 
 About
 -----
