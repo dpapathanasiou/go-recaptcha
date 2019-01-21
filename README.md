@@ -34,7 +34,9 @@ The recaptcha.Confirm() function returns either true (i.e., the captcha was comp
 
 ### [reCAPTCHA v3](https://developers.google.com/recaptcha/docs/v3)
 
+Version 3 works differently: instead of interrupting page visitors with a prompt, it runs in the background, computing a score.
 
+This repo has been updated to handle the [score and action in the response](recaptcha.go#L20), but the usage example is still in terms of version 2.
 
 Usage Example
 -------------
