@@ -4,7 +4,7 @@ go-recaptcha
 About
 -----
 
-This package handles [reCaptcha](https://www.google.com/recaptcha) ([API version 2.0](https://developers.google.com/recaptcha/intro)) form submissions in [Go](http://golang.org/).
+This package handles [reCaptcha](https://www.google.com/recaptcha) (API versions [2](https://developers.google.com/recaptcha/intro) and [3](https://developers.google.com/recaptcha/docs/v3)) form submissions in [Go](http://golang.org/).
 
 Usage
 -----
@@ -27,9 +27,14 @@ once, to set the reCaptcha private key for your domain, then:
 recaptcha.Confirm (clientIpAddress, recaptchaResponse)
 ```
 
-for each reCaptcha form input you need to check, using the values obtained by reading the form's POST parameters (the <tt>recaptchaResponse</tt> in the above corresponds to the value of <tt>g-recaptcha-response</tt> sent by the reCaptcha server.)
+### [reCAPTCHA v2](https://developers.google.com/recaptcha/intro)
+For each reCaptcha form input you need to check, using the values obtained by reading the form's POST parameters (the <tt>recaptchaResponse</tt> in the above corresponds to the value of <tt>g-recaptcha-response</tt> sent by the reCaptcha server.)
 
 The recaptcha.Confirm() function returns either true (i.e., the captcha was completed correctly) or false, along with any errors (from the HTTP io read or the attempt to unmarshal the JSON reply).
+
+### [reCAPTCHA v3](https://developers.google.com/recaptcha/docs/v3)
+
+
 
 Usage Example
 -------------
