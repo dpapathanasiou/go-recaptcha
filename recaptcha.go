@@ -8,12 +8,11 @@ package recaptcha
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"time"
-
-	"github.com/pkg/errors"
 )
 
 type RecaptchaResponse struct {
@@ -35,16 +34,16 @@ func check(remoteip, response string) (RecaptchaResponse, error) {
 	resp, err := http.PostForm(recaptchaServerName,
 		url.Values{"secret": {recaptchaPrivateKey}, "remoteip": {remoteip}, "response": {response}})
 	if err != nil {
-		return r, errors.Wrap(err, "post error: %s\n")
+		return r, fmt.Errorf("post error: %w", err)
 	}
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		return r, errors.Wrap(err, "read error: could not read body")
+		return r, fmt.Errorf("read error: could not read body: %w", err)
 	}
 	err = json.Unmarshal(body, &r)
 	if err != nil {
-		return r, errors.Wrap(err, "read error: got invalid JSON")
+		return r, fmt.Errorf("read error: JSON unmarshal error: %w", err)
 	}
 	return r, nil
 }
