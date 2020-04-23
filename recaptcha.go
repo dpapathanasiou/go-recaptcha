@@ -28,11 +28,11 @@ const recaptchaServerName = "https://www.google.com/recaptcha/api/siteverify"
 
 var recaptchaPrivateKey string
 
-// check uses the client ip address, the challenge code from the reCaptcha form,
+// Check uses the client ip address, the challenge code from the reCaptcha form,
 // and the client's response input to that challenge to determine whether or not
 // the client answered the reCaptcha input question correctly.
-// It returns a boolean value indicating whether or not the client answered correctly.
-func check(remoteip, response string) (r RecaptchaResponse, err error) {
+// It returns a RecaptchaResponse object wich contains user response.
+func Check(remoteip, response string) (r RecaptchaResponse, err error) {
 	resp, err := http.PostForm(recaptchaServerName,
 		url.Values{"secret": {recaptchaPrivateKey}, "remoteip": {remoteip}, "response": {response}})
 	if err != nil {
@@ -53,13 +53,12 @@ func check(remoteip, response string) (r RecaptchaResponse, err error) {
 	return
 }
 
-// Confirm is the public interface function.
-// It calls check, which the client ip address, the challenge code from the reCaptcha form,
+// Confirm calls check, which the client ip address, the challenge code from the reCaptcha form,
 // and the client's response input to that challenge to determine whether or not
 // the client answered the reCaptcha input question correctly.
 // It returns a boolean value indicating whether or not the client answered correctly.
 func Confirm(remoteip, response string) (result bool, err error) {
-	resp, err := check(remoteip, response)
+	resp, err := Check(remoteip, response)
 	result = resp.Success
 	return
 }
